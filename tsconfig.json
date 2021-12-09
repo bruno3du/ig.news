@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "next.config.js", "src/pages/_app.tsx"  ],
   "exclude": [
     "node_modules"
   ]

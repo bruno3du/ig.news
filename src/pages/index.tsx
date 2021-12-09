@@ -6,7 +6,7 @@ export default function Home() {
 	return (
 		<div>
 			<Head>
-				<title>ig.Home</title>
+				<title>ig.news | Home</title>
 			</Head>
 			<h1>Hello World</h1>
 		</div>
