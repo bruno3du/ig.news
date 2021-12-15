@@ -9,7 +9,9 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"faunadb": "^4.4.1",
 		"next": "12.0.7",
+		"next-auth": "^4.0.5",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
 		"react-icons": "^4.3.1",
@@ -17,6 +19,7 @@
 		"stripe": "^8.193.0"
 	},
 	"devDependencies": {
+		"@types/next-auth": "^3.15.0",
 		"@types/node": "^16.11.11",
 		"@types/react": "^17.0.37",
 		"eslint": "8.4.0",
