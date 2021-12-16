@@ -3,7 +3,6 @@
 import { query as q } from 'faunadb';
 import NextAuth from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
-import { signIn } from 'next-auth/react';
 import { fauna } from '../../../services/fauna';
 
 export default NextAuth({
@@ -19,13 +18,26 @@ export default NextAuth({
 			},
 		}),
 	],
+
 	callbacks: {
 		async signIn({ user, account, profile }) {
-			console.log(user);
 			const { email } = user;
-			await fauna.query(q.Create(q.Collection('users'), { data: { email } }));
+			if (!email) throw Error();
+			try {
+				await fauna.query(
+					q.If(
+						q.Not(
+							q.Exists(q.Match(q.Index('user_by_email'), q.Casefold(email)))
+						),
+						q.Create(q.Collection('users'), { data: { email } }),
+						q.Get(q.Match(q.Index('user_by_email'), q.Casefold(email)))
+					)
+				);
 
-			return true;
+				return true;
+			} catch {
+				return false;
+			}
 		},
 	},
 });
