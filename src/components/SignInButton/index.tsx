@@ -10,8 +10,6 @@ import styles from './styles.module.scss';
 export default function SignInButton() {
 	const { data: session } = useSession();
 
-	console.log(session)
-
 	return session ? (
 		<button type='button' className={styles.signInButton} onClick={()=> signOut()}>
 			<FaGithub color='#04d361' /> {session.user?.name}
