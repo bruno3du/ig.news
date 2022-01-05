@@ -23,7 +23,6 @@ export default async function subscribe(
 	const cancelUrl = process.env.STRIPE_CANCEL_URL;
 
 	const session = await getSession({ req });
-	if (!session?.user?.email) return;
 
 	const user = await fauna.query<User>(
 		q.Get(q.Match(q.Index('user_by_email'), q.Casefold(session.user.email)))
@@ -33,7 +32,7 @@ export default async function subscribe(
 
 	if (!customerId) {
 		const stripeCustomer = await stripe.customers.create({
-			email: session.user?.email,
+			email: session.user.email,
 		});
 
 		await fauna.query(
@@ -44,23 +43,8 @@ export default async function subscribe(
 			})
 		);
 
-		customerId = user.data.stripe_customer_id
-	}
-
-
-
-	if (typeof sucessUrl === 'undefined' || sucessUrl === '') {
-		console.error(
-			'The FAUNADB_SECRET environment variable is not set, exiting.'
-		);
-		process.exit(1);
-	}
-
-	if (typeof cancelUrl === 'undefined' || cancelUrl === '') {
-		console.error(
-			'The FAUNADB_SECRET environment variable is not set, exiting.'
-		);
-		process.exit(1);
+		customerId = user.data.stripe_customer_id;
+		// verificar possivel erro de customerid === stripeCustomer
 	}
 
 	if (req.method === 'POST') {
