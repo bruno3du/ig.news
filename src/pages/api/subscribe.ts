@@ -15,10 +15,7 @@ type User = {
 	};
 };
 
-export default async function subscribe(
-	req: NextApiRequest,
-	res: NextApiResponse
-) {
+export default async function (req: NextApiRequest, res: NextApiResponse) {
 	const sucessUrl = process.env.STRIPE_SUCCESS_URL;
 	const cancelUrl = process.env.STRIPE_CANCEL_URL;
 
@@ -48,11 +45,12 @@ export default async function subscribe(
 	}
 
 	if (req.method === 'POST') {
+
 		const stripeCheckoutSession = await stripe.checkout.sessions.create({
 			customer: customerId,
 			payment_method_types: ['card'],
 			billing_address_collection: 'required',
-			line_items: [{ price: 'price_1K6IKYIcn69nOO2TCYRijbPm', quantity: 1 }],
+			line_items: [{ price: 'price_1KGY9zIcn69nOO2TuFFFktER', quantity: 1 }],
 			mode: 'subscription',
 			allow_promotion_codes: true,
 			success_url: sucessUrl,

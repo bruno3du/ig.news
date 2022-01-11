@@ -17,9 +17,7 @@ export default function SubscribeButton({ priceId }: SubscribeButtonProps) {
 			await signIn('github');
 			return;
 		}
-
 		//checkout session
-
 		try {
 			const response = await api.post('/subscribe');
 			const { sessionId } = response.data;

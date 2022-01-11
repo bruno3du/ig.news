@@ -1,6 +1,7 @@
 /** @format */
 
 import Img from 'next/image';
+import Link from 'next/link';
 import SignInButton from '../SignInButton';
 import styles from './styles.module.scss';
 
@@ -10,12 +11,14 @@ export function Header() {
 			<header className={styles.headerContainer}>
 				<div className={styles.headerContent}>
 					<div>
-						<Img
-							src='/images/logo.svg'
-							alt='ig.news'
-							width='180px'
-							height='120px'
-						/>
+						<Link passHref href='/'>
+							<Img
+								src='/images/logo.svg'
+								alt='ig.news'
+								width='180px'
+								height='120px'
+							/>
+						</Link>
 					</div>
 					<nav>
 						<a className={styles.active}>Home</a>

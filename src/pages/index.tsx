@@ -3,6 +3,7 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import SubscribeButton from '../components/SubscribeButton';
 import { stripe } from '../services/stripe';
 
@@ -35,21 +36,22 @@ export default function Home({ product }: HomeProps) {
 					</p>
 					<SubscribeButton priceId={product.priceId} />
 				</section>
-				<Image
-					src='/images/avatar.svg'
-					alt='Girl coding'
-					width='336px'
-					height='521px'
-				/>
+				
+					<Image
+						src='/images/avatar.svg'
+						alt='Girl coding'
+						width='336px'
+						height='521px'
+					/>
 			</main>
 		</>
 	);
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-	const price = await stripe.prices.retrieve('price_1K6IKYIcn69nOO2TCYRijbPm', {
-		expand: ['product'],
-	});
+	const price = await stripe.prices.retrieve('price_1KGY9zIcn69nOO2TuFFFktER');
+
+	//possivelmente removenr o expand
 
 	const product = {
 		priceId: price.id,

@@ -22,7 +22,10 @@ export default NextAuth({
 	callbacks: {
 		async signIn({ user, account, profile }) {
 			const { email } = user;
-			if (!email) throw Error();
+			if (!email) {
+				throw Error();
+			}
+
 			try {
 				await fauna.query(
 					q.If(

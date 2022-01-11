@@ -12,12 +12,13 @@ async function buffer(readable: Readable) {
 	for await (const chunk of readable) {
 		chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
 	}
-
 	return Buffer.concat(chunks);
 }
 
 export const config = {
-	bodyParser: false,
+	api: {
+		bodyParser: false,
+	},
 };
 
 const relevantEvents = new Set([
@@ -27,20 +28,22 @@ const relevantEvents = new Set([
 	'checkout.session.deleted',
 ]);
 
-export default async function webHooks(
-	req: NextApiRequest,
-	res: NextApiResponse
-) {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default async (req: NextApiRequest, res: NextApiResponse) => {
 	if (req.method === 'POST') {
-		const buf = await buffer(req);
-		const secret = await req.headers['stripe-signature'];
-		const stripeWebhooks = process.env.STRIPE_WEBHOOK_SECRET;
+		const buff = await buffer(req);
+		const secret = req.headers['stripe-signature'];
 
 		let event: Stripe.Event;
 
 		try {
-			event = stripe.webhooks.constructEvent(buf, secret, stripeWebhooks);
+			event = stripe.webhooks.constructEvent(
+				buff,
+				secret,
+				process.env.STRIPE_WEBHOOK_SECRET
+			);
 		} catch (err: any) {
+			console.log(`Webhooks error: ${err.message}`);
 			return res.status(400).send(`Webhooks error: ${err.message}`);
 		}
 
@@ -49,6 +52,15 @@ export default async function webHooks(
 		if (relevantEvents.has(type)) {
 			try {
 				switch (type) {
+					// case 'checkout.session.created':
+					// case 'checkout.session.updated':
+					case 'checkout.session.deleted':
+						const subscription = event.data.object as Stripe.Checkout.Session;
+						await saveSubscription(
+							subscription.id,
+							subscription.customer.toString()
+						);
+						break;
 					case 'checkout.session.completed':
 						const checkoutSession = event.data
 							.object as Stripe.Checkout.Session;
@@ -57,6 +69,7 @@ export default async function webHooks(
 							checkoutSession.subscription.toString(),
 							checkoutSession.customer.toString()
 						);
+
 						break;
 					default:
 						throw new Error('Unhandled event.');
@@ -71,4 +84,4 @@ export default async function webHooks(
 		res.setHeader('Allow', 'POST');
 		res.status(405).end('Method not allowed');
 	}
-}
+};

@@ -1,5 +1,10 @@
 /** @format */
 
 export default function Posts() {
-	return <div>Posts</div>;
+	return (
+		<>
+			<i>Teste</i>
+			Posts
+		</>
+	);
 }
