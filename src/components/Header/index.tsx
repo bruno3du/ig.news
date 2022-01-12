@@ -22,7 +22,7 @@ export function Header() {
 					</div>
 					<nav>
 						<a className={styles.active}>Home</a>
-						<a href='#'>Posts</a>
+						<Link href='/posts'>Posts</Link>
 					</nav>
 					<SignInButton />
 				</div>
