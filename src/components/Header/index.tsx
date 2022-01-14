@@ -4,8 +4,12 @@ import Img from 'next/image';
 import Link from 'next/link';
 import SignInButton from '../SignInButton';
 import styles from './styles.module.scss';
+import { useRouter } from 'next/router';
+import { ActiveLink } from '../ActiveLink';
 
 export function Header() {
+	const { asPath } = useRouter();
+	console.log(asPath);
 	return (
 		<div>
 			<header className={styles.headerContainer}>
@@ -21,8 +25,12 @@ export function Header() {
 						</Link>
 					</div>
 					<nav>
-						<a className={styles.active}>Home</a>
-						<Link href='/posts'>Posts</Link>
+						<ActiveLink activeClassName={styles.active} href='/'>
+							<a>Home</a>
+						</ActiveLink>
+						<ActiveLink activeClassName={styles.active} href='/posts'>
+							<a>Posts</a>
+						</ActiveLink>
 					</nav>
 					<SignInButton />
 				</div>
