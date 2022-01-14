@@ -24,8 +24,9 @@
     "**/*.ts",
     "**/*.tsx",
     "next.config.js",
-    "src/pages/_app.tsx"
-, "src/pages/posts/[slug]"  ],
+    "src/pages/_app.tsx",
+    "src/pages/posts/[slug]"
+  ],
   "exclude": [
     "node_modules"
   ]
