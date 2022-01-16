@@ -15,7 +15,7 @@ type User = {
 	};
 };
 
-export default async function (req: NextApiRequest, res: NextApiResponse) {
+export default async function nextAuth(req: NextApiRequest, res: NextApiResponse) {
 	const sucessUrl = process.env.STRIPE_SUCCESS_URL;
 	const cancelUrl = process.env.STRIPE_CANCEL_URL;
 
