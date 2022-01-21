@@ -7,6 +7,7 @@ import styles from './styles.module.scss';
 import { getPrismicClient } from '../../services/prismic';
 import { RichText } from 'prismic-dom';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 type Posts = {
 	slug: string;
@@ -20,6 +21,17 @@ type PostsProps = {
 };
 
 export default function Posts({ posts }: PostsProps) {
+	const { data: session } = useSession();
+
+	function sendToPath(path) {
+		if (session?.activeSubscription) {
+			const pathToSubscribers = `/posts/${path}`;
+			return pathToSubscribers;
+		} else {
+			const pathToVisitors = `/posts/preview/${path}`;
+			return pathToVisitors;
+		}
+	}
 	return (
 		<>
 			<Head>
@@ -29,7 +41,7 @@ export default function Posts({ posts }: PostsProps) {
 			<main className={styles.container}>
 				<div className={styles.posts}>
 					{posts.map((post) => (
-						<Link key={post.slug} href={`/posts/${post.slug}`}>
+						<Link key={post.slug} href={sendToPath(post.slug)}>
 							<a>
 								<time>{post.updateAt}</time>
 								<strong>{post.title}</strong>
