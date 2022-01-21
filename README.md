@@ -52,7 +52,7 @@ Além disto é bom ter um bom editor para trabalhar com o código como [VSCode](
 
 ```bash
 # Clone este repositório
-$ git clone <https://github.com/bruno3du/nlw-together.git>
+$ git clone <https://github.com/bruno3du/ig.news.git>
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd ignews
