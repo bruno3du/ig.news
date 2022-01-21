@@ -22,33 +22,43 @@ Todo o gerenciamento de usuário e estado de inscrição foi controlado pelo ban
 
 E por fim o <a href="">Prismic</a> que é que Headless CMS, gerenciador de conteúdo, que é o responsável por armazenar e servir os conteúdos dos artigos.
 
-Todas essas tecnologias e implementações são claramente algo que trouxe meu conhecimento em relação a aplicações, comunicações, arquitetuta a um nível que não esperava antes.
+Todas essas tecnologias e implementações são claramente algo que trouxe meu conhecimento em relação a aplicações, comunicações e arquitetura a um nível que não esperava antes.
+
+## Como testar a aplicação
+
+Se quiser testar a aplicação em produção primeiramente você pode acessar-lo aqui:  https://ignews-bruno.netlify.app/
+
+Ao acessar o site você irá fazer seu login com github. Para isso é muito importante que você deixe o e-mail do seu github publico. É muito simples, e você pode ver este pequeno tutorial - <a href="https://help.umbler.com/hc/pt-br/articles/360007180671-Tornando-seu-e-mail-p%C3%BAblico-no-GitHub#:~:text=O%20primeiro%20passo%20%C3%A9%20acessar,Keep%20my%20email%20address%20private">Tornando seu e-mail público no GitHub</a> - da Umbler, que te auxiliará em caso de dúvida.
+
+Conforme a documentação do Stripe indica, utilize o seguinte numero de cartão para teste: *4242 4242 4242 4242*
+
+Veja mais sobre em <a href="https://stripe.com/docs/testing">teste de intregração</a> com stripe.
+
+Agora, aproveite!
 
 Tabela de conteúdos
 =================
 <p align="center">
- <a href="#começando">Começando</a> •
- <a href="#prerequisitos">Pré-requisitos</a> • 
- <a href="#instalação">Instalação</a> • 
- <a href="#contribuicao">Contribuição</a> • 
- <a href="#licenc-a">Licença</a> • 
- <a href="#autor">Autor</a>
+ • <a href="#começando">Começando</a>
+ • <a href="#prerequisitos">Pré-requisitos</a>
+ • <a href="#instalação">Instalação</a>
+ • <a href="#autor">Autor</a>
 </p>
 
-## 🚀 Começando
+## Começando
 
 Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
 
 Consulte **Instalação** para saber como implantar o projeto.
 
-### 📋 Pré-requisitos
+### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/). 
 Além disto é bom ter um bom editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
 
 
-### 🔧 Instalação - EDITAR
+### Instalação
 
 ```bash
 # Clone este repositório
@@ -76,12 +86,16 @@ As seguintes ferramentas foram usadas na construção do projeto:
 <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" /> 
 <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" />
 <img src="https://img.shields.io/badge/Stripe-626CD9?style=for-the-badge&logo=Stripe&logoColor=white" />
+<img src="https://img.shields.io/badge/Prismic -%23484A7A.svg?&style=for-the-badge&logo=Prismic&logoColor=white" />
+ 
 </div>
 
+---
 ## 📌 Versão
 
 Foi usado o [Github](https://github.com/) para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/suas/tags/do/projeto). 
 
+---
 ## 🎁 Expressões de gratidão
 
 * Agradeço a RocketSeat por apresentar essas tecnlogias e conceitos que me levaram ao proximo nível de conhecimento 📢
@@ -89,7 +103,6 @@ Foi usado o [Github](https://github.com/) para controle de versão. Para as vers
 
 ---
 ### Autor
-
 
 <a href="https://github.com/bruno3du">
  <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/83365446?v=4" width="100px;" alt=""/>
